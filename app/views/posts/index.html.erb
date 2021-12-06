@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="d-flex flex-column m-5">
+    <div class="new-post"><%= link_to "Ecrire un article", new_post_path %></div>
+    <% @posts.each do |post| %>
+      <div class="card card-post m-3">
+        <h1><%= link_to "#{post.title}", post_path(post) %></h1>
+        <p><%= post.user.username %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <%= link_to("retourner aux articles", posts_path) %>
+  <div class="d-flex flex-column">
+    <h1><%= @post.title %></h1>
+    <p><%= @post.content %></p>
+    <p><%= @post.user.username %></p>
+  </div>
+    <% if @post.comments %>
+      <% @post.comments.each do |comment| %>
+      <div class="card-comment">
+        <h3><%= comment.content %></h3>
+        <p><%= comment.user.username %></p>
+      </div>
+      <% end %>
+    <% end %>
+  <div>
+    <%= simple_form_for [@post, @comment] , remote: true do |f| %>
+      <%= f.input :content, as: :text, label: "Nouveau Commentaire" %>
+      <%= f.button :submit, method: :post%>
+    <% end %>
+  </div>
+</div>
